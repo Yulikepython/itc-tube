@@ -1,13 +1,9 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Views.pyからHTMLへ</title>
-  </head>
-  <body>
+{% extends "base.html" %}
+
+{% block title %}ブロックタグで表示{% endblock %}
+
+{% block content %}
     <h1>今日のラッキーナンバーはこちら→ {{random_number}}</h1>
     <p>あなたの入力した数字は→ {{ number}} </p>
     <p> {{random_number}} + {{number}} = {{ random_number|add:number}}</p>
-  </body>
-</html>
+{% endblock %}
