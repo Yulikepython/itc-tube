@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}日報アプリ{% endblock %}
+{% block title %}日報アプリ一覧{% endblock %}
 
 {% block content %}
-  <h1>こちらは日報アプリのページになります</h1>
-  <p>ブロッックタグを使って表示してます</p>
-  <a href={% url 'nippo-create' %}>フォームページへ</a>
-  <a href={% url 'nippo-detail' 3 %}>3の詳細ページへ</a>
-  <a href={% url 'nippo-detail' 10 %}>10の詳細ページへ</a>
-  <a href={% url 'nippo-detail' 99 %}>99の詳細ページへ</a>
+  <div>
+    <ul>
+      {% for obj in object_list %}
+        <li>{{ obj.title }}</li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

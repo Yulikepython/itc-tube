@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}ブロックタグで表示{% endblock %}
+{% block title %}pkでオブジェクトを表示します{% endblock %}
 
 {% block content %}
-    <h1>今日のラッキーナンバーはこちら→ {{random_number}}</h1>
-    <p>あなたの入力した数字は→ {{ number}} </p>
-    <p> {{random_number}} + {{number}} = {{ random_number|add:number}}</p>
+<div>
+    {{ object }}
+</div>
 {% endblock %}
