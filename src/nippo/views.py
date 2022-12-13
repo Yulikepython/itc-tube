@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from .models import NippoModel
 
-from random import randint
-
 def nippoListView(request):
     template_name = "nippo/nippo-list.html"
     ctx = {}
@@ -22,5 +20,6 @@ def nippoCreateView(request):
     if request.POST:
         title = request.POST.get("title")
         content = request.POST.get("content")
-        #受け取った値で必要な処理を行います
+        obj = NippoModel(title=title, content=content)
+        obj.save()
     return render(request, template_name)
