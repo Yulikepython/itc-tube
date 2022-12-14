@@ -3,13 +3,7 @@
 
 {% block content %}
     <form method="POST">{% csrf_token %}
-        <div>
-            <input name="title" type="text" placeholder="タイトル..."/>
-        </div>
-        <div>
-            <textarea type="text" name="content" placeholder="日報..."></textarea>
-        </div>
+        {{ form.as_p }}
         <button type="submit">送信</button>
     </form>
-
 {% endblock %}
