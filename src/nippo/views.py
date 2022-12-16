@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import NippoModel
 from .forms import  NippoFormClass
 
@@ -12,7 +12,7 @@ def nippoListView(request):
 def nippoDetailView(request, pk):
     template_name = "nippo/nippo-detail.html"
     ctx = {}
-    q = NippoModel.objects.get(pk=pk)
+    q =  get_object_or_404(NippoModel, pk=pk)
     ctx["object"] = q
     return render(request, template_name, ctx)
 
@@ -30,7 +30,7 @@ def nippoCreateView(request):
 
 def nippoUpdateFormView(request, pk):
     template_name = "nippo/nippo-form.html"
-    obj = NippoModel.objects.get(pk=pk)
+    obj =  get_object_or_404(NippoModel, pk=pk)
     initial_values = {"title": obj.title, "content":obj.content}
     form = NippoFormClass(request.POST or initial_values)
     ctx = {"form": form}
