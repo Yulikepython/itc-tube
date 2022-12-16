@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <p>削除しますと復旧ができません。よろしいですか？</p>
+    <input type="submit" value="削除する">
+</form>
+{% endblock %}
