@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <title>{% block title %}{% endblock %}</title>
 
   </head>
   <body>
-
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <div>
+          <a class="navbar-brand" href="#">
+              <i class="bi bi-bootstrap-fill" style="font-size: 2rem;"></i>
+          </a>
+        </div>
+        <div class="flex-grow-1" style="max-width:500px;">
+          <form class="d-flex" method="GET">
+            <input class="form-control me-2" type="search" placeholder="検索..." aria-label="Search" name="search">
+            <button class="btn btn-outline-light" type="submit">search</button>
+          </form>
+        </div>
+        <div class="text-light nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ユーザー名
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">アカウント設定</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">ログアウト</a></li>
+            </ul>
+        </div>
+      </div>
+    </nav>
     {% block content %}{% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
