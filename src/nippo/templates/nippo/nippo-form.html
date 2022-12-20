@@ -7,8 +7,10 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-    <form method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">送信</button>
+<div class="container my-3" style="max-width:700px;">
+    <form method="POST"> {% csrf_token %}
+    {{ form.as_p }}
+    <button class="form-control btn btn-primary" type="submit">登録</button>
     </form>
+</div>
 {% endblock %}
