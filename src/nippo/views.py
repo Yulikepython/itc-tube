@@ -1,12 +1,33 @@
 from django.shortcuts import render, get_object_or_404,redirect
+from django.views.generic import ListView, DetailView #インポート
 from .models import NippoModel
 from .forms import  NippoFormClass
+
+class NippoListView(ListView): #クラス作成
+    template_name = "nippo/nippo-list.html" #変数
+    model = NippoModel #変数
+    
+    def get_queryset(self):
+        qs = NippoModel.objects.all()
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        return ctx
+
+class NippoDetailView(DetailView):
+    template_name = "nippo/nippo-detail.html"
+    model = NippoModel
+    
+    def get_object(self):
+        return super().get_object()
 
 def nippoListView(request):
     template_name = "nippo/nippo-list.html"
     ctx = {}
     qs = NippoModel.objects.all()
     ctx["object_list"] = qs
+    ctx["something"] = "1"
     return render(request, template_name, ctx)
 
 def nippoDetailView(request, pk):
