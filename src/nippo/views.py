@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404,redirect
-from django.views.generic import ListView, DetailView #インポート
+from django.views.generic import ListView, DetailView, FormView #インポート
 from .models import NippoModel
 from .forms import  NippoFormClass
+from django.urls import reverse, reverse_lazy
+
 
 class NippoListView(ListView): #クラス作成
     template_name = "nippo/nippo-list.html" #変数
@@ -21,6 +23,17 @@ class NippoDetailView(DetailView):
     
     def get_object(self):
         return super().get_object()
+    
+class NippoCreateFormView(FormView):
+    template_name = "nippo/nippo-form.html"
+    form_class = NippoFormClass
+    success_url = reverse_lazy("nippo-list")
+    
+    def form_valid(self, form):
+        data = form.cleaned_data
+        obj = NippoModel(**data)
+        obj.save()
+        return super().form_valid(form)
 
 def nippoListView(request):
     template_name = "nippo/nippo-list.html"
