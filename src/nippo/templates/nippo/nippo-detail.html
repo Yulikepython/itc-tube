@@ -11,7 +11,8 @@
             <p class="card-text">{{ object.content }}</p>
             <div class="w-50">
                 <a href={% url 'nippo-update' object.pk %} class="btn btn-primary btn-sm">編集</a>
-                <a href={% url 'nippo-delete' object.pk %} class="btn btn-danger btn-sm">削除</a>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.pk}}">削除</button>
+                {% include 'nippo/nippo-delete.html' %}
             </div>
         </div>
     </div> 

@@ -22,11 +22,10 @@
                     <a href={% url 'nippo-update' obj.pk %} class="card-link">
                         編集
                     </a>
-                    <a href={% url 'nippo-delete' obj.pk %} class="card-link">
-                        削除
-                    </a>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{obj.pk}}">削除</button>
                 </div>
             </div>
+            {% include "nippo/nippo-delete.html" with object=obj %}
         {% endfor %}
   </div>
 {% endblock %}
