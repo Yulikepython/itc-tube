@@ -3,13 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% include "css.html" %}
-    <title>{% block title %}{% endblock %}</title>
+    {% include 'css.html' %}
+    {% block extra_css %}{% endblock %}
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}{% endblock %}
   </head>
   <body>
-    {% include "nav.html" %}
+    {% include 'nav.html' %}
+    {% block allauth %}
+      {% if messages %}
+      <div>
+      <strong>Messages:</strong>
+      <ul>
+          {% for message in messages %}
+          <li>{{message}}</li>
+          {% endfor %}
+      </ul>
+      </div>
+      {% endif %}
+    {% endblock %}
     {% block content %}{% endblock %}
-    {% include "footer.html" %}
-    {% include "js.html" %}
+    {% block extra_body %}{% endblock %}
+    {% include 'footer.html' %}
+    {% include 'js.html' %}
   </body>
 </html>

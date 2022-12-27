@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="allauth_container">
+    <form class="signup allauth_form" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+        <h2>{% trans "Sign Up" %}</h2>
+        {{ form | crispy }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+        <button class=" btn btn-primary my-3 form-control" type="submit">{% trans "Sign Up" %} &raquo;</button>
+        <p>すでにアカウントをお持ちの方は <a href="{{ login_url }}">こちら</a></p>
+    </form>
+</div>
+{% endblock %}
