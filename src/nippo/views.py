@@ -5,6 +5,7 @@ from .models import NippoModel
 from .forms import  NippoModelForm, NippoFormClass
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
 
 class OwnerOnly(UserPassesTestMixin):
     #アクセス制限をおこなう関数
@@ -14,6 +15,7 @@ class OwnerOnly(UserPassesTestMixin):
     
     #Falseだったときのリダイレクト先を指定
     def handle_no_permission(self):
+        messages.error(self.request, "ご自身の日報でのみ編集・削除可能です。")
         return redirect("nippo-detail", pk=self.kwargs["pk"])
 
 
