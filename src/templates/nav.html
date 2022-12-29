@@ -1,3 +1,4 @@
+{% load accounts_user %}
 <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
       <div>
@@ -13,7 +14,7 @@
       </div>
       <div class="text-light nav-item dropdown">
           <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            ユーザー名
+            {{ request.user|user_display }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">アカウント設定</a></li>
