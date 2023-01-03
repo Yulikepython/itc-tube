@@ -10,7 +10,15 @@
 <div class="container my-3" style="max-width:700px;">
     <form method="POST"> {% csrf_token %}
     {{ form.as_p }}
-    <button class="form-control btn btn-primary" type="submit">登録</button>
+    {% if object %}
+        <button class="btn btn-primary form-control" type="submit">保存</button>
+        <p class="my-3 text-danger" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.pk}}" style="cursor:pointer;display:inline-block;font-weight:700; font-size:12px;">
+            <u>日報を削除する</u>
+        </p>
+        {% include 'nippo/nippo-delete.html' %}
+    {% else %}
+        <button class="btn btn-primary form-control" type="submit">登録</button>
+    {% endif %}      
     </form>
 </div>
 {% endblock %}

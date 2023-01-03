@@ -4,17 +4,17 @@
 <div class="container">
     <div class="card mx-auto my-5 w-50" style="min-width:300px;">
         <div class="card-header">
-            {{ object.timestamp }}
+            【作成日時】{{ object.timestamp }}
         </div>
-        <div class="card-body">
-            <h3 class="card-title">{{ object.title }} </h3>
-            <p class="card-text">{{ object.content }}</p>
-            <div class="w-50">
-                <a href={% url 'nippo-update' object.pk %} class="btn btn-primary btn-sm">編集</a>
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.pk}}">削除</button>
-                {% include 'nippo/nippo-delete.html' %}
-            </div>
+        <div class="card-body pb-3">
+            <h3 class="card-title mb-3 px-2" style="border-bottom:solid 1px #f4f4f4;">
+                {{ object.title }}
+            </h3>
+            <p class="card-text my-3 px-5">{{ object.content }}</p>
         </div>
-    </div> 
+        <div class="card-footer">
+            <a href={% url 'nippo-list' %} class="btn btn-danger btn-sm">戻る</a>
+        </div>
+    </div>
 </div>
 {% endblock %}

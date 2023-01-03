@@ -3,29 +3,41 @@
 
 {% block content %}
   <div class="container">
-        <div class="mt-3 d-flex justify-content-end">
-            <a href={% url "nippo-create" %} class="btn btn-outline-primary float-right">
-              <i class="bi bi-plus"></i>
-            </a>
-        </div>
-        {% for obj in object_list %}
-            <div class="card my-3">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href={% url 'nippo-detail' obj.pk %}>
-                            {{ obj.title}}
-                        </a>
-                    </h5>
-                    <p class="card-text">
-                        {{ obj.content }}
-                    </p>
-                    <a href={% url 'nippo-update' obj.pk %} class="card-link">
-                        編集
-                    </a>
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{obj.pk}}">削除</button>
-                </div>
+        {% if request.user.is_authenticated %}
+            <div class="mt-3 d-flex justify-content-end">
+                <a href={% url "nippo-create" %} class="btn btn-outline-primary float-end">
+                <i class="bi bi-plus"></i>
+                </a>
             </div>
-            {% include "nippo/nippo-delete.html" with object=obj %}
-        {% endfor %}
+        {% endif %}
+        {% if object_list %}
+            {% for obj in object_list %}
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                        {% if obj.user == request.user %} 
+                            <span class="float-end text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{obj.pk}}">
+                                <i class="bi bi-trash-fill"></i>
+                            </span>
+                                <a href={% url 'nippo-update' obj.pk %}>
+                        {% else %}
+                            <a href={% url 'nippo-detail' obj.pk %}>
+                        {% endif %}
+                                {{ obj.title }}
+                            </a>
+                        </h5>
+                        <p class="card-text">
+                            {{ obj.content }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+
+                    </div>
+                </div>
+                {% include "nippo/nippo-delete.html" with object=obj %}
+            {% endfor %}
+        {% else %}
+            <div>日報が見つかりません</div>
+        {% endif %}
   </div>
 {% endblock %}
