@@ -139,9 +139,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 from django.urls import reverse_lazy
+
+
 LOGIN_REDIRECT_URL = reverse_lazy('nippo-list')
 ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
 
+ACCOUNT_ADAPTER = "accounts.adapter.MyNippoAdapter"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGOUT_ON_GET = True
 
