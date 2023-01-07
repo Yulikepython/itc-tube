@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db.models.signals import post_save
 
 GENDER_CHOICE = [(None, "--"), ("m", "男性"), ("f", "女性")]
 
@@ -80,3 +81,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username
+    
+def post_user_created(sender, instance, created, **kwargs):
+    if created:
+        profile_obj = Profile(user=instance)
+        profile_obj.username = instance.email
+        profile_obj.save()
+
+post_save.connect(post_user_created, sender=User)

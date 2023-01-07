@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('nippo/', include('nippo.urls')),
     path('accounts/', include('allauth.urls')),
+    path('profile/', include('accounts.urls')),
 ]
 
 if settings.DEBUG:
