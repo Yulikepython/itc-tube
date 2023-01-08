@@ -6,6 +6,7 @@ from .forms import  NippoModelForm, NippoFormClass
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.db.models import Q
 
 class OwnerOnly(UserPassesTestMixin):
     #アクセス制限をおこなう関数
@@ -25,6 +26,12 @@ class NippoListView(ListView): #クラス作成
     
     def get_queryset(self):
         qs = NippoModel.objects.all()
+        if self.request.user.is_authenticated:
+            qs = qs.filter(Q(public=True)|Q(user=self.request.user))
+        else:
+            qs = qs.filter(public=True)
+
+        qs = qs.order_by("-timestamp")
         return qs
 
     def get_context_data(self, *args, **kwargs):

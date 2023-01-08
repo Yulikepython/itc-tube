@@ -13,6 +13,9 @@
         {% if object_list %}
             {% for obj in object_list %}
                 <div class="card my-3">
+                    <div class="card-header">
+                        {{ obj.timestamp|date:"Y年n年j日" }}
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">
                         {% if obj.user == request.user %} 
@@ -31,7 +34,12 @@
                         </p>
                     </div>
                     <div class="card-footer">
-
+                        by 
+                        {% if obj.user == request.user %}
+                            <span class="badge bg-primary">あなた</span>
+                        {% else %}
+                            <span class="badge bg-secondary">{{ obj.user.profile.username }}</span>
+                        {% endif %} 
                     </div>
                 </div>
                 {% include "nippo/nippo-delete.html" with object=obj %}
