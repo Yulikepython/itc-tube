@@ -4,21 +4,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import NippoModel
 from .forms import  NippoModelForm, NippoFormClass
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 
-class OwnerOnly(UserPassesTestMixin):
-    #アクセス制限をおこなう関数
-    def test_func(self):
-        nippo_instance = self.get_object()
-        return nippo_instance.user == self.request.user
-    
-    #Falseだったときのリダイレクト先を指定
-    def handle_no_permission(self):
-        messages.error(self.request, "ご自身の日報でのみ編集・削除可能です。")
-        return redirect("nippo-detail", pk=self.kwargs["pk"])
-
+from utils.access_restrictions import OwnerOnly
 
 class NippoListView(ListView): #クラス作成
     template_name = "nippo/nippo-list.html" #変数
