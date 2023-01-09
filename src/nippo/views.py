@@ -14,14 +14,8 @@ class NippoListView(ListView): #クラス作成
     model = NippoModel #変数
     
     def get_queryset(self):
-        qs = NippoModel.objects.all()
-        if self.request.user.is_authenticated:
-            qs = qs.filter(Q(public=True)|Q(user=self.request.user))
-        else:
-            qs = qs.filter(public=True)
-
-        qs = qs.order_by("-timestamp")
-        return qs
+        q = self.request.GET.get("search")
+        return NippoModel.objects.search(query=q)
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
