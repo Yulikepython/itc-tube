@@ -19,12 +19,12 @@
                     <div class="card-body">
                         <h5 class="card-title">
                         {% if obj.user == request.user %} 
-                            <span class="float-end text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{obj.pk}}">
+                            <span class="float-end text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{obj.slug}}">
                                 <i class="bi bi-trash-fill"></i>
                             </span>
-                                <a href={% url 'nippo-update' obj.pk %}>
+                                <a href={% url "nippo-update" obj.slug %}>
                         {% else %}
-                            <a href={% url 'nippo-detail' obj.pk %}>
+                            <a href={% url 'nippo-detail' obj.slug %}>
                         {% endif %}
                                 {{ obj.title }}
                             </a>

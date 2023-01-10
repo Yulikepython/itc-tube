@@ -28,6 +28,7 @@ class NippoModel(models.Model):
     title = models.CharField(max_length=100, verbose_name="タイトル")
     content = models.TextField(max_length=1000, verbose_name="内容")
     public = models.BooleanField(default=False, verbose_name="公開する")
+    slug = models.SlugField(max_length=20, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     
     class Meta:

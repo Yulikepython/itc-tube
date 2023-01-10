@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal-{{object.pk}}">
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal-{{object.slug}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,7 +11,7 @@
                 <p>削除すると元に戻すことはできません。よろしいでしょうか？</p>
             </div>
             <div class="modal-footer">
-            <form method="POST" action="{% url 'nippo-delete' object.pk %}">{% csrf_token %}
+            <form method="POST" action="{% url 'nippo-delete' object.slug %}">{% csrf_token %}
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger">DELETE</button>
             </div>
