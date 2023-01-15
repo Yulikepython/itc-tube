@@ -12,7 +12,7 @@ class OwnerOnly(UserPassesTestMixin):
     #Falseだったときのリダイレクト先を指定
     def handle_no_permission(self):
         messages.error(self.request, "ご自身の日報でのみ編集・削除可能です。")
-        return redirect("nippo-detail", pk=self.kwargs["pk"])
+        return redirect("nippo-detail", slug=self.kwargs["slug"])
 
 #自分のプロフィールだけ見れるようにする
 class OwnProfileOnly(UserPassesTestMixin):

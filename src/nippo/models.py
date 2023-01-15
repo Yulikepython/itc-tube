@@ -1,8 +1,18 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from utils.random_string import *
 User = get_user_model()
 
 from django.db.models import Q #インポート
+
+def slug_maker():
+    repeat = True
+    while repeat:
+        new_slug = random_string_generator()
+        counter = NippoModel.objects.filter(slug=new_slug).count()
+        if counter == 0:
+            repeat = False
+    return new_slug
 
 class NippoModelQuerySet(models.QuerySet):
     def search(self, query=None):
@@ -28,7 +38,7 @@ class NippoModel(models.Model):
     title = models.CharField(max_length=100, verbose_name="タイトル")
     content = models.TextField(max_length=1000, verbose_name="内容")
     public = models.BooleanField(default=False, verbose_name="公開する")
-    slug = models.SlugField(max_length=20, blank=True, null=True)
+    slug = models.SlugField(max_length=20, default=slug_maker, unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     
     class Meta:
