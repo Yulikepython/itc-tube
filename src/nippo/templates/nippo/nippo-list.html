@@ -14,7 +14,7 @@
             {% for obj in object_list %}
                 <div class="card my-3">
                     <div class="card-header">
-                        {{ obj.timestamp|date:"Y年n年j日" }}
+                        {{ obj.date|date:"Y年n年j日" }}
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">

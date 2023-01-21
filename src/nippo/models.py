@@ -4,6 +4,7 @@ from utils.random_string import *
 User = get_user_model()
 
 from django.db.models import Q #インポート
+from django.utils import timezone
 
 def slug_maker():
     repeat = True
@@ -24,7 +25,7 @@ class NippoModelQuerySet(models.QuerySet):
                 Q(content__icontains=query)            
             )
             qs = qs.filter(or_lookup).distinct()
-        return qs.order_by("-timestamp") #新しい順に並び替えてます
+        return qs.order_by("-date") #新しい順に並び替えてます
     
 class NippoModelManager(models.Manager):
     def get_queryset(self):
@@ -38,6 +39,7 @@ class NippoModel(models.Model):
     title = models.CharField(max_length=100, verbose_name="タイトル")
     content = models.TextField(max_length=1000, verbose_name="内容")
     public = models.BooleanField(default=False, verbose_name="公開する")
+    date = models.DateField(default=timezone.now)
     slug = models.SlugField(max_length=20, default=slug_maker, unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     
