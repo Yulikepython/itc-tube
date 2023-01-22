@@ -20,6 +20,9 @@ class NippoModelFilter(django_filters.FilterSet):
                 widget=Select(attrs={
                     "class":"form-select"
                 }))
+    
+    #プロフィールパラメータ
+    profile = django_filters.NumberFilter(method="get_profile_nippo")
 
     class Meta:
         model = NippoModel
@@ -51,4 +54,13 @@ class NippoModelFilter(django_filters.FilterSet):
             qs = qs.filter(public=True)
         elif value == "2":#非公開
             qs = qs.filter(public=False)
+        return qs
+    
+    def get_profile_nippo(self, queryset, name, value):
+        from accounts.models import Profile
+        qs = queryset
+        if Profile.objects.filter(id=value).exists():
+            qs = qs.filter(user__profile__id=value)
+        else:
+            qs = qs.none()
         return qs

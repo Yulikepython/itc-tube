@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import User
+from .models import User, Profile
 from .forms import CustomAdminChangeForm
 
 class UserAdmin(BaseUserAdmin):
@@ -46,4 +46,4 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(User, UserAdmin)
 #Profileクラスは不要になったのでコメントアウト
-# admin.site.register(Profile)
+admin.site.register(Profile)

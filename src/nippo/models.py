@@ -51,3 +51,8 @@ class NippoModel(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def get_profile_page_url(self):
+        from django.urls import reverse_lazy
+        return reverse_lazy("nippo-list") + f"?profile={self.user.profile.id}"
+

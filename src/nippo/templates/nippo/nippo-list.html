@@ -2,8 +2,11 @@
 {% block head_title %}日報アプリ一覧{% endblock %}
 
 {% block content %}
+  <div class="container">
+    <h2 class="my-3 text-start mx-auto" style="max-width:700px;">{% if not profile %}日報リスト一覧{% else %}{{profile.username}}の日報一覧{% endif %}</h2>
+  </div>
   <div class="container d-flex justify-content-center flex-wrap-reverse py-3">
-    <div class="flex-grow-1"><!-- 一覧リストdiv-->
+    <div class="flex-grow-1"><!-- 一覧リストdi-->
         {% if filter.qs %}
             {% for obj in filter.qs %}
                 <div class="card mx-auto mb-2" style="max-width:700px; min-width:300px;">
@@ -33,9 +36,13 @@
                     <div class="card-footer">
                         by 
                         {% if obj.user == request.user %}
-                            <span class="badge bg-primary">あなた</span>
+                            <span class="badge bg-primary">
+                                <a class="text-light" href={{obj.get_profile_page_url}}>あなた</a>
+                            </span>
                         {% else %}
-                            <span class="badge bg-secondary">{{ obj.user.profile.username }}</span>
+                            <span class="badge bg-secondary">
+                                <a class="text-light" href={{obj.get_profile_page_url}}>{{ obj.user.profile.username }}</a>
+                            </span>
                         {% endif %} 
                     </div>
                 </div>

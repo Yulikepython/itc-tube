@@ -13,12 +13,14 @@
         </form>
       </div>
       <div class="text-light nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{ request.user|user_display }}
           </a>
           <ul class="dropdown-menu endposition" aria-labelledby="navbarDropdown">
             {% if request.user.is_authenticated %}
-                <li><a class="dropdown-item" href="#">アカウント設定</a></li>
+                <li><a class="dropdown-item" href="{% url 'profile-update' request.user.profile.pk %}">アカウント設定</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href={{request.user.profile.get_own_archive_url}}>あなたの日報一覧</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href={% url "account_logout" %}>ログアウト</a></li>
             {% else %}
@@ -26,7 +28,7 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href={% url "account_signup" %}>サインアップ</a></li>
             {% endif %}
-      </ul>
+        </ul>
       </div>
     </div>
   </nav>

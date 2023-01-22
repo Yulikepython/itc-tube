@@ -7,6 +7,8 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 
+from accounts.models import Profile
+
 from .filters import NippoModelFilter
 
 from utils.access_restrictions import OwnerOnly
@@ -27,6 +29,10 @@ class NippoListView(ListView): #クラス作成
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
         ctx["filter"] = NippoModelFilter(self.request.GET, queryset=self.get_queryset())
+        profile_id = self.request.GET.get("profile")
+        q = Profile.objects.filter(id=profile_id)
+        if q.exists():
+            ctx["profile"] = q.first()
         return ctx
 
 class NippoDetailView(DetailView):

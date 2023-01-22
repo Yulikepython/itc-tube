@@ -5,5 +5,5 @@ register = template.Library()
 def user_display(user):
     user_display = "ゲスト"
     if user.is_authenticated:
-        user_display = user.email
+        user_display = user.profile.username
     return user_display
