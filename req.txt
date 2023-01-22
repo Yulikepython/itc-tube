@@ -11,6 +11,7 @@ django-allauth==0.51.0
 django-bootstrap-datepicker-plus==5.0.3
 django-bootstrap4==22.3
 django-crispy-forms==1.14.0
+django-filter==22.1
 idna==3.4
 oauthlib==3.2.2
 pycparser==2.21

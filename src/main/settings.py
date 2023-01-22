@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     'bootstrap4',
     'bootstrap_datepicker_plus',
+    'django_filters',
     
     #apps
     'nippo',

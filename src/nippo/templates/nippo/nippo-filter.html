@@ -1,0 +1,22 @@
+<div class="px-2 filter-container">
+    {% if request.user.is_authenticated %}
+        <div class="filter-add-btn"">
+            <a href={% url "nippo-create" %} class="btn btn-outline-success w-100 from-control">
+                新規追加
+            </a>
+        </div>
+    {% endif %}
+    <form method="GET">
+        <div class="flex-sort">
+            <div class="w-100">
+                {{ filter.form.date.label }} {{ filter.form.date}}
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="w-100">
+                    {{ filter.form.public.label }}{{ filter.form.public }}
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary form-control">ソート</button>
+        </div>
+    </form>
+</div>

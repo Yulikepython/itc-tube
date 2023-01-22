@@ -1,0 +1,32 @@
+.filter-add-btn{
+    margin-bottom: 60px;
+}
+
+.flex-sort{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-sort div{
+    margin-bottom:10px;
+}
+
+@media screen and (max-width:767px){
+    .filter-container{
+        width:100%;
+        margin-bottom:20px;
+    }
+    .filter-add-btn{
+        margin-bottom: 10px;
+    }
+    .flex-sort{
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    .flex-sort div{
+        margin:0 10px;;
+    }
+}
