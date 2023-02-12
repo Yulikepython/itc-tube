@@ -1,9 +1,7 @@
 #あとから追記分（オリジナル）
-media_local/
-media_local
-local.py
-auth/
+base.py
 auth
+.env
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
